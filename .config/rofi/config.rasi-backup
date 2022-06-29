@@ -1,0 +1,133 @@
+configuration {
+  display-drun: "Applications:";
+  display-window: "Windows:";
+  drun-display-format: "{icons} {name}";
+  font: "Fira Code Retina 15";
+  modi: "window,run,drun";
+  show-icons: true;
+  icon-theme: "Papirus";
+}
+
+@theme "/dev/null"
+
+* {
+    fg-alt:           rgba ( 120, 124, 153, 50 % );
+    bg:               rgba ( 17, 18, 29, 50 % );
+    padding:          0;
+    background-color: var(bg);
+    margin:           0;
+    bg-alt:           rgba ( 68, 75, 106, 50 % );
+    fg:               White;
+    border:           0;
+    spacing:          0;
+}
+window {
+    width: 40.0000% ;
+}
+element {
+    padding:    8px 0px ;
+    text-color: var(fg-alt);
+}
+element selected {
+    text-color: var(fg);
+}
+element-text {
+    background-color: inherit;
+    vertical-align:   0.50;
+    text-color:       inherit;
+}
+element-icon {
+    size: 30;
+}
+entry {
+    padding:          12;
+    background-color: var(bg-alt);
+    text-color:       var(fg);
+}
+inputbar {
+    children: [ "prompt","entry" ];
+}
+listview {
+    padding:          8px 12px ;
+    background-color: var(bg);
+    columns:          1;
+    lines:            8;
+}
+mainbox {
+    background-color: var(bg);
+    children:         [ "inputbar","listview" ];
+}
+prompt {
+    padding:          12px 0px 0px 12px ;
+    background-color: var(bg-alt);
+    enabled:          true;
+    text-color:       var(fg);
+}
+
+/* * {
+  bg: #11121D;
+  bg-alt: #444b6a;
+
+  fg: #FFFFFF;
+  fg-alt: #787c99;
+
+  background-color: @bg;
+  
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+}
+
+window {
+  width: 40%;
+}
+
+element {
+  padding: 8 0;
+  text-color: @fg-alt;
+}
+
+element selected {
+  text-color: @fg;
+}
+
+element-text {
+  background-color: inherit;
+  text-color: inherit;
+  vertical-align: 0.5;
+}
+
+element-icon {
+  size: 30;
+}
+
+entry {
+  background-color: @bg-alt;
+  padding: 12;
+  text-color: @fg;
+}
+
+inputbar {
+  children: [prompt, entry];
+}
+
+listview {
+  padding: 8 12;
+  background-color: @bg;
+  columns: 1;
+  lines: 8;
+}
+
+mainbox {
+  background-color: @bg;
+  children: [inputbar, listview];
+}
+
+prompt {
+  background-color: @bg-alt;
+  enabled: true;
+  padding: 12 0 0 12;
+  text-color: @fg;
+} */
+

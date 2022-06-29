@@ -1,0 +1,99 @@
+configuration {
+  display-drun: "Applications:";
+  display-window: "Windows:";
+  drun-display-format: "{icons} {name}";
+  font: "Fira Code Retina 15";
+  modi: "window,run,drun";
+  show-icons: true;
+  icon-theme: "Papirus";
+}
+
+@theme "/dev/null"
+
+* {
+    font:                           "Fira Code Bold 10";
+
+    red:                            #FC7B93;
+    darkred:                        #FC7B93;
+    green  :                        #C3F980;
+    darkgreen:                      #C3F980;
+    yellow:                         #FFC87C;
+    darkyellow:                     #FFC87C;
+    blue:                           #84ACFF;
+    darkblue:                       #84ACFF;
+    purple:                         #C5A4FF;
+    darkpurple:                     #C5A4FF;
+    cyan:                           #87D9FF;
+    darkcyan:                       #87D9FF;
+    foreground:                     #A2ACD7;
+    background:                     #1A1B26;
+    border:                         #434C5E;
+
+    background-color: transparent;
+    text-color:       @foreground;
+    padding:          0px;
+    margin:           0px;
+    width: 			  50%;
+    height: 		  60%;
+}
+
+
+window {
+  fullscreen: false;
+  padding: 1em;
+  background-color: @background;
+}
+
+mainbox {
+  padding:  0px;
+}
+
+prompt { enabled: false; }
+
+entry {
+	placeholder:			"Search";
+	placeholder-color:      @foreground;
+	expand:                 true;
+	padding:                1.5%;
+	border-radius:			    8px;
+    background-color:     @background;
+}
+
+inputbar {
+	children: 			[ prompt, entry ];
+	background-image:    url("images/pattern.png");
+	expand:              false;
+	border-radius:     10px;
+	padding:           50px 50px 50px 300px;
+}
+
+listview {
+  margin:   20px 120px;
+  spacing:  10px;
+  columns:  4;
+  fixed-columns: true;
+}
+
+element, element-text, element-icon {
+  cursor: pointer;
+}
+
+element {
+  padding:      8px;
+  spacing:      4px;
+  orientation:    vertical;
+  border-radius:  16px;
+}
+
+element selected {
+  background-color: @border;
+}
+
+element-icon {
+  size: 3em;
+  horizontal-align: 0.5;
+}
+
+element-text {
+  horizontal-align: 0.5;
+}
