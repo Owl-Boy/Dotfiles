@@ -1,15 +1,6 @@
---
---  █████╗ ██╗     ██████╗ ██╗  ██╗ █████╗
--- ██╔══██╗██║     ██╔══██╗██║  ██║██╔══██╗
--- ███████║██║     ██████╔╝███████║███████║
--- ██╔══██║██║     ██╔═══╝ ██╔══██║██╔══██║
--- ██║  ██║███████╗██║     ██║  ██║██║  ██║
--- ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝
---
---
-local status_ok, alpha = pcall(require, 'alpha')
+local status_ok, alpha = pcall(require, "alpha")
 if not status_ok then
-  return
+	return
 end
 
 local fortune = require 'alpha.fortune'
@@ -32,7 +23,7 @@ dashboard.section.buttons.val = {
   dashboard.button('r', '  Recently used files', ':Telescope oldfiles <CR>'),
   dashboard.button('t', '  Find text', ':Telescope live_grep <CR>'),
   dashboard.button('c', '  Configuration', ':e ~/.config/nvim/init.lua <CR>'),
-  dashboard.button('e', '  Plugins ', ':e ~/.config/nvim/lua/user/plugins.lua'),
+  dashboard.button('e', '  Plugins ', ':e ~/.config/nvim/lua/user/plugins.lua <CR>'),
   dashboard.button('q', '  Quit Neovim', ':qa<CR>'),
 }
 

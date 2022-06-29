@@ -1,98 +1,69 @@
---
--- ██╗  ██╗███████╗██╗   ██╗███╗   ███╗ █████╗ ██████╗ ███████╗
--- ██║ ██╔╝██╔════╝╚██╗ ██╔╝████╗ ████║██╔══██╗██╔══██╗██╔════╝
--- █████╔╝ █████╗   ╚████╔╝ ██╔████╔██║███████║██████╔╝███████╗
--- ██╔═██╗ ██╔══╝    ╚██╔╝  ██║╚██╔╝██║██╔══██║██╔═══╝ ╚════██║
--- ██║  ██╗███████╗   ██║   ██║ ╚═╝ ██║██║  ██║██║     ███████║
--- ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝     ╚══════╝
---
-
-local modes = {
-  normal = 'n',
-  insert = 'i',
-  visual = 'v',
-  visual_block = 'x',
-  command = 'c',
-  -- add more mode here if you want
-}
 local opts = { noremap = true, silent = true }
 
-function set_keymap(keys)
-  for mode, map in pairs(keys) do
-    local key_mode = modes[mode]
-    for key, value in pairs(map) do
-      vim.api.nvim_set_keymap(key_mode, key, value, opts)
-    end
-  end
-end
+local term_opts = { silent = true }
+
+-- Shorten function name
+local keymap = vim.api.nvim_set_keymap
 
 --Remap space as leader key
-vim.api.nvim_set_keymap('', '<Space>', '<Nop>', opts)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+keymap("", "<Space>", "<Nop>", opts)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-local keymap = {
-  normal = {
-    -- Better window navigation
-    ['<C-h>'] = '<C-w>h',
-    ['<C-j>'] = '<C-w>j',
-    ['<C-k>'] = '<C-w>k',
-    ['<C-l>'] = '<C-w>l',
-    -- Resize with arrows
-    ['<C-Up>'] = ':resize -2<CR>',
-    ['<C-Down>'] = ':resize +2<CR>',
-    ['<C-Left>'] = ':vertical resize -2<CR>',
-    ['<C-Right>'] = ':vertical resize -2<CR>',
-    -- Navigate buffers
-    ['<S-l>'] = ':bnext<CR>',
-    ['<S-h>'] = ':bprevious<CR>',
-    -- Move text up and down
-    ['<A-j>'] = '<Esc>:m .+1<CR>==gi',
-    ['<A-k>'] = '<Esc>:m .-2<CR>==gi',
-    -- Telescope
-    ['<leader>f'] = '<cmd>Telescope find_files<cr>',
-    ['<c-t>'] = '<cmd>Telescope live_grep<cr>',
-    -- NvimTree
-    ['<leader>e'] = ':NvimTreeToggle<cr>',
-  },
-  insert = {
-    -- Press jk fast to enter normal mode
-    ['jk'] = '<ESC>',
-  },
-  visual = {
-    -- Stay in indent mode
-    ['<'] = '<gv',
-    ['>'] = '>gv',
-    -- Move text up and down
-    ['A-j'] = ':m .+1<CR>==gi',
-    ['A-k'] = ':m .-2<CR>==gi',
-    ['p'] = '"_dP',
-  },
-  visual_block = {
-    -- Move text up and down
-    ['J'] = ":move '>+1<CR>gv-gv",
-    ['K'] = ":move '<-2<CR>gv-gv",
-    ['A-j'] = ":move '>+1<CR>gv-gv",
-    ['A-k'] = ":move '<-1<CR>gv-gv",
-  },
-  -- command = {
-  -- 	["w"] = "<cmd>lua vim.lsp.buf.formatting()<CR> :w",
-  -- 	["ww"] = "w",
-  -- },
-}
+-- Modes
+--   normal_mode = "n",
+--   insert_mode = "i",
+--   visual_mode = "v",
+--   visual_block_mode = "x",
+--   term_mode = "t",
+--   command_mode = "c",
 
--- Default Keybinds I Might Forget
---[[
-Normal Mode
-  Navigation
-  "gd" -> Goto Definition
-  Comments
-  "gcc" -> Toggles One-line Comments
-  "gbc" -> Toggles Block Comments
-Visual Mode
-  Comments
-  "gc" -> Toggles One-Line Comments
-  "gb" -> Toggles Block Comments
-]]
+-- Normal --
+-- Better window navigation
+keymap("n", "<C-h>", "<C-w>h", opts)
+keymap("n", "<C-j>", "<C-w>j", opts)
+keymap("n", "<C-k>", "<C-w>k", opts)
+keymap("n", "<C-l>", "<C-w>l", opts)
 
-set_keymap(keymap) -- put this line at the end of file
+-- Resize with arrows
+keymap("n", "<C-Up>", ":resize -2<CR>", opts)
+keymap("n", "<C-Down>", ":resize +2<CR>", opts)
+keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+
+-- Navigate buffers
+keymap("n", "<S-l>", ":bnext<CR>", opts)
+keymap("n", "<S-h>", ":bprevious<CR>", opts)
+
+-- Move text up and down
+keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
+keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
+
+-- Insert --
+-- Press jk fast to enter
+keymap("i", "jk", "<ESC>", opts)
+
+-- Visual --
+-- Stay in indent mode
+keymap("v", "<", "<gv", opts)
+keymap("v", ">", ">gv", opts)
+
+-- Move text up and down
+keymap("v", "<A-j>", ":m .+1<CR>==", opts)
+keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+keymap("v", "p", '"_dP', opts)
+
+-- Visual Block --
+-- Move text up and down
+keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
+keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
+keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
+keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+
+-- Terminal --
+-- Better terminal navigation
+-- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
+-- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
+-- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
+-- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+

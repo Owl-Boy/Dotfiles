@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "/home/owlyy/.local/share/nvim/site/pack/packer/start/alpha-nvim-fortune",
     url = "https://github.com/BlakeJC94/alpha-nvim-fortune"
   },
+  ["base16-vim"] = {
+    loaded = true,
+    path = "/home/owlyy/.local/share/nvim/site/pack/packer/start/base16-vim",
+    url = "https://github.com/chriskempson/base16-vim"
+  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/home/owlyy/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
@@ -164,6 +169,11 @@ _G.packer_plugins = {
     path = "/home/owlyy/.local/share/nvim/site/pack/packer/start/goyo.vim",
     url = "https://github.com/junegunn/goyo.vim"
   },
+  ["haskell-vim"] = {
+    loaded = true,
+    path = "/home/owlyy/.local/share/nvim/site/pack/packer/start/haskell-vim",
+    url = "https://github.com/neovimhaskell/haskell-vim"
+  },
   ["impatient.nvim"] = {
     loaded = true,
     path = "/home/owlyy/.local/share/nvim/site/pack/packer/start/impatient.nvim",
@@ -183,6 +193,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/owlyy/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  ["markdown-preview.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/owlyy/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim",
+    url = "https://github.com/iamcco/markdown-preview.nvim"
   },
   ["night-owl.vim"] = {
     loaded = true,
@@ -274,6 +291,16 @@ _G.packer_plugins = {
     path = "/home/owlyy/.local/share/nvim/site/pack/packer/start/project.nvim",
     url = "https://github.com/ahmedkhalf/project.nvim"
   },
+  pynvim = {
+    loaded = true,
+    path = "/home/owlyy/.local/share/nvim/site/pack/packer/start/pynvim",
+    url = "https://github.com/neovim/pynvim"
+  },
+  ["rust.vim"] = {
+    loaded = true,
+    path = "/home/owlyy/.local/share/nvim/site/pack/packer/start/rust.vim",
+    url = "https://github.com/rust-lang/rust.vim"
+  },
   ["telescope-media-files.nvim"] = {
     loaded = true,
     path = "/home/owlyy/.local/share/nvim/site/pack/packer/start/telescope-media-files.nvim",
@@ -304,6 +331,11 @@ _G.packer_plugins = {
     path = "/home/owlyy/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
   },
+  vimtex = {
+    loaded = true,
+    path = "/home/owlyy/.local/share/nvim/site/pack/packer/start/vimtex",
+    url = "https://github.com/lervag/vimtex"
+  },
   ["which-key.nvim"] = {
     loaded = true,
     path = "/home/owlyy/.local/share/nvim/site/pack/packer/start/which-key.nvim",
@@ -312,10 +344,22 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Setup for: markdown-preview.nvim
+time([[Setup for markdown-preview.nvim]], true)
+try_loadstring("\27LJ\2\n=\0\0\2\0\4\0\0056\0\0\0009\0\1\0005\1\3\0=\1\2\0K\0\1\0\1\2\0\0\rmarkdown\19mkdp_filetypes\6g\bvim\0", "setup", "markdown-preview.nvim")
+time([[Setup for markdown-preview.nvim]], false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'markdown-preview.nvim'}, { ft = "markdown" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
+vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 end)
 
 if not no_errors then
+  error_msg = error_msg:gsub('"', '\\"')
   vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
 end
