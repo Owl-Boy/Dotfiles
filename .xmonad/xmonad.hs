@@ -123,15 +123,15 @@ myStartupHook = do
     spawnOnce "nm-applet"
     spawnOnce "volumeicon"
     spawnOnce "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
-    spawnOnce "xrandr --output eDP1 --scale 0.5x0.5"
+    spawnOnce "xrandr --output eDP-1 --scale 0.5x0.5"
     spawnOnce "sleep 2; keymaps.sh"
     spawnOnce "flameshot &"
 
     spawn ("sleep 2 && conky -c $HOME/.config/conky/xmonad/" ++ colorScheme ++ "-01.conkyrc")
     spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
 
-    spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
-    -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
+    -- spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
+    spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
     -- spawnOnce "feh --randomize --bg-fill ~/wallpapers/*"  -- feh set random wallpaper
     -- spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
     setWMName "LG3D"
